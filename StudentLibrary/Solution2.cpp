@@ -28,34 +28,31 @@ float Solution2::GetBalance(const std::string& accountName)
     // Lire chaque ligne du fichier
     while (std::getline(file, line))
     {
-        // Utiliser un flux de chaînes pour extraire l'opération (+ ou -) et le montant
+        // Utiliser un flux de chaînes pour extraire l'opération (WITHDRAW ou DEPOSIT) et le montant
         std::istringstream iss(line);
-        char operation;
+        std::string operation;
         float amount;
 
-        // Essayer d'extraire l'opération et le montant
         if (iss >> operation >> amount)
         {
             // Mettre à jour le solde en fonction de l'opération
-            if (operation == '+')
+            if (operation == "DEPOSIT")
             {
                 balance += amount;
             }
-            else if (operation == '-')
+            else if (operation == "WITHDRAW")
             {
                 balance -= amount;
             }
             else
             {
-                // Si l'opération n'est ni + ni -, lancer une exception
-                file.close();
+                // Si l'opération n'est ni DEPOSIT ni WITHDRAW, lancer une exception
                 throw std::runtime_error("Invalid operation in file: " + filePath);
             }
         }
         else
         {
             // Si la ligne ne contient pas correctement une opération et un montant, lancer une exception
-            file.close();
             throw std::runtime_error("Invalid line format in file: " + filePath);
         }
     }
