@@ -20,7 +20,7 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
         }
         else if (_to == TemperatureUnits::KELVIN)
         {
-            return _value + 273;
+            return _value + 273.15f;
         }
         break;
 
@@ -31,18 +31,18 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
         }
         else if (_to == TemperatureUnits::KELVIN)
         {
-            return (_value - 32) * 5 / 9 + 273;
+            return (_value - 32) * 5 / 9 + 273.15f;
         }
         break;
 
     case TemperatureUnits::KELVIN:
         if (_to == TemperatureUnits::CELSIUS)
         {
-            return _value - 273;
+            return _value - 273.15f;
         }
         else if (_to == TemperatureUnits::FAHRENHEIT)
         {
-            return (_value - 273) * 9 / 5 + 32;
+            return (_value - 273.15f) * 9 / 5 + 32;
         }
         break;
     }
