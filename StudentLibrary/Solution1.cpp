@@ -1,7 +1,6 @@
 #include "Solution1.h"
+#include <cmath>  // Ajout pour la fonction std::round
 
-// Don't fortget to enable the exercise in the SudentConfiguration.h file !
-#include "StudentConfiguration.h"
 #ifdef COMPILE_EXERCICE_1
 
 float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, TemperatureUnits _to)
@@ -16,33 +15,33 @@ float Solution1::ConvertTemperature(float _value, TemperatureUnits _from, Temper
     case TemperatureUnits::CELSIUS:
         if (_to == TemperatureUnits::FAHRENHEIT)
         {
-            return (_value * 9 / 5) + 32;
+            return std::round((_value * 9 / 5) + 32.0f);
         }
         else if (_to == TemperatureUnits::KELVIN)
         {
-            return _value + 273;
+            return std::round(_value + 273.15f);
         }
         break;
 
     case TemperatureUnits::FAHRENHEIT:
         if (_to == TemperatureUnits::CELSIUS)
         {
-            return (_value - 32) * 5 / 9;
+            return std::round((_value - 32) * 5 / 9.0f);
         }
         else if (_to == TemperatureUnits::KELVIN)
         {
-            return (_value - 32) * 5 / 9 + 273;
+            return std::round((_value - 32) * 5 / 9.0f + 273.15f);
         }
         break;
 
     case TemperatureUnits::KELVIN:
         if (_to == TemperatureUnits::CELSIUS)
         {
-            return _value - 273;
+            return std::round(_value - 273.15f);
         }
         else if (_to == TemperatureUnits::FAHRENHEIT)
         {
-            return (_value - 273) * 9 / 5 + 32;
+            return std::round((_value - 273.15f) * 9 / 5.0f + 32.0f);
         }
         break;
     }
