@@ -33,6 +33,7 @@ float Solution2::GetBalance(const std::string& accountName)
         char operation;
         float amount;
 
+        // Essayer d'extraire l'opération et le montant
         if (iss >> operation >> amount)
         {
             // Mettre à jour le solde en fonction de l'opération
@@ -47,12 +48,14 @@ float Solution2::GetBalance(const std::string& accountName)
             else
             {
                 // Si l'opération n'est ni + ni -, lancer une exception
+                file.close();
                 throw std::runtime_error("Invalid operation in file: " + filePath);
             }
         }
         else
         {
             // Si la ligne ne contient pas correctement une opération et un montant, lancer une exception
+            file.close();
             throw std::runtime_error("Invalid line format in file: " + filePath);
         }
     }
